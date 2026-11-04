@@ -1,0 +1,48 @@
+<nav class="bg-gray-900 shadow-lg sticky top-0 z-50 py-3">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between">
+      <a class="text-white font-semibold text-lg" routerLink="/">Tienda de cubos</a>
+
+      <details class="md:hidden">
+        <summary class="list-none cursor-pointer text-gray-300 p-2 rounded-md hover:bg-gray-800">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </summary>
+      </details>
+
+      <div class="hidden md:flex items-center gap-2 flex-1 ml-6">
+        <a class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+           routerLink="/" routerLinkActive="bg-gray-800 text-white" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+
+        <details class="relative">
+          <summary class="list-none cursor-pointer flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-colors">
+            Marcas
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="absolute left-0 mt-1 min-w-40 bg-white rounded-md shadow-lg py-1 z-50">
+            @for (marca of marcas(); track marca) {
+              <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" [routerLink]="['/marcas', marca]">{{ marca }}</a>
+            }
+          </div>
+        </details>
+
+        <div class="flex items-center gap-2 ml-auto">
+          @if (_auth.token()) {
+            <a class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+               routerLink="/perfil" routerLinkActive="bg-gray-800 text-white">Mi perfil</a>
+            <a class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+               routerLink="/compras" routerLinkActive="bg-gray-800 text-white">Mis compras</a>
+            <button class="px-3 py-1.5 rounded-md text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition-colors"
+                    (click)="logOut()">Log out</button>
+          } @else {
+            <a class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+               routerLink="/login" routerLinkActive="bg-gray-800 text-white">Login</a>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

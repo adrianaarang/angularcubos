@@ -1,0 +1,19 @@
+<div class="max-w-2xl mx-auto px-4 mt-6">
+  <h3 class="text-xl font-bold text-gray-900 mb-4">Selecciona cubo</h3>
+  <div class="flex items-center gap-3">
+    <select class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            [(ngModel)]="idCubo">
+      <option [ngValue]="null" disabled>-- Elige un cubo --</option>
+      @for (cubo of cubos(); track cubo.idCubo) {
+        <option [ngValue]="cubo.idCubo">{{ cubo.nombre }}</option>
+      }
+    </select>
+    <button class="px-4 py-2 rounded-md bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            (click)="createPedido()" [disabled]="idCubo === null || enviado()">
+      {{ enviado() ? 'Enviando...' : 'Añadir a pedidos' }}
+    </button>
+  </div>
+  @if (error()) {
+    <div class="mt-3 rounded-md bg-red-50 text-red-700 text-sm px-3 py-2">{{ error() }}</div>
+  }
+</div>

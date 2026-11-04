@@ -1,0 +1,24 @@
+<h1 class="text-center text-2xl font-bold text-gray-900 mt-4">Cubos de la marca {{ marca() }}</h1>
+<div class="flex flex-wrap justify-center gap-6 mt-6 px-4">
+  @for (cubo of cubos(); track cubo.idCubo) {
+    <div class="w-72 bg-white rounded-lg shadow hover:shadow-md transition-shadow overflow-hidden"
+         [class.border-2]="cuboFavorito()?.idCubo === cubo.idCubo"
+         [class.border-yellow-400]="cuboFavorito()?.idCubo === cubo.idCubo">
+      <img src="{{ cubo.imagen }}" class="w-full h-48 object-cover" alt="{{ cubo.nombre }}">
+      <div class="p-4">
+        <h5 class="font-semibold text-gray-900">{{ cubo.nombre }}</h5>
+        <p class="text-sm text-gray-500 mt-1">Precio: {{ cubo.precio | currency:'EUR' }}</p>
+        <button
+          class="mt-3 px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
+          [class.bg-yellow-400]="cuboFavorito()?.idCubo === cubo.idCubo"
+          [class.text-white]="cuboFavorito()?.idCubo === cubo.idCubo"
+          [class.border]="cuboFavorito()?.idCubo !== cubo.idCubo"
+          [class.border-yellow-400]="cuboFavorito()?.idCubo !== cubo.idCubo"
+          [class.text-yellow-500]="cuboFavorito()?.idCubo !== cubo.idCubo"
+          (click)="seleccionarFavorito(cubo)">
+          {{ cuboFavorito()?.idCubo === cubo.idCubo ? ' Favorito' : ' Marcar favorito' }}
+        </button>
+      </div>
+    </div>
+  }
+</div>

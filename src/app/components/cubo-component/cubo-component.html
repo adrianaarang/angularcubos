@@ -1,0 +1,22 @@
+<div class="w-56 bg-white rounded-lg shadow p-2" [class.border-2]="esFavorito" [class.border-yellow-400]="esFavorito">
+  <img [src]="cubo.imagen" [alt]="cubo.nombre" class="w-full h-32 object-cover rounded-md" />
+  <div class="p-2">
+    <h6 class="font-semibold text-gray-900">{{ cubo.nombre }}</h6>
+    <p class="text-sm text-gray-600 mt-1">Precio: {{ cubo.precio }}</p>
+    <p class="text-sm text-gray-600">Valoración: {{ cubo.valoracion }}</p>
+    <div class="flex gap-2 mt-3">
+      <a class="px-3 py-1.5 rounded-md text-sm font-medium bg-sky-500 text-white hover:bg-sky-600 transition-colors"
+         [routerLink]="['/detalles', cubo.idCubo]">Ver detalles</a>
+      <button
+        class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
+        [class.bg-yellow-400]="esFavorito"
+        [class.text-white]="esFavorito"
+        [class.border]="!esFavorito"
+        [class.border-yellow-400]="!esFavorito"
+        [class.text-yellow-500]="!esFavorito"
+        (click)="marcarFavorito()">
+        {{ esFavorito ? ' Favorito' : ' Marcar favorito' }}
+      </button>
+    </div>
+  </div>
+</div>
