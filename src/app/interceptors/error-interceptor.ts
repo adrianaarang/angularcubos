@@ -6,8 +6,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error: HttpErrorResponse) => {
       console.log("tipo de error: " + error.status);
       console.log("Mensaje de error: " + error.message);
-      //ESTAMOS CAPTURANDO UN ERROR, DEBEMOS PROPAGAR DICHO ERROR A LA
-      //PETICION
+
       return throwError(() => error);
     })
   );

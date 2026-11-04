@@ -17,6 +17,7 @@ import { PerfilComponent } from './components/perfil-component/perfil-component'
 import { CompraComponent } from './components/compra-component/compra-component';
 import { PedidoComponent } from './components/pedido-component/pedido-component';
 import { RegistroComponent } from './components/registro-component/registro-component';
+import { InformePdfComponent } from './components/informe-pdf-component/informe-pdf-component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RegistroComponent } from './components/registro-component/registro-comp
     CompraComponent,
     PedidoComponent,
     RegistroComponent,
+    InformePdfComponent,
   ],
   imports: [BrowserModule, CommonModule, HttpClientModule, FormsModule, AppRoutingModule],
   providers: [
