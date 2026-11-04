@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -32,35 +32,36 @@ export class ServiceAuth {
     this._token.set(null);
   }
 
-  private authHeaders(): HttpHeaders {
-    return new HttpHeaders({ Authorization: 'Bearer ' + this._token() });
-  }
   async getPerfilAsync(): Promise<Usuario> {
     return await firstValueFrom(
-      this._http.get<Usuario>(this.apiUrl + 'api/Manage/PerfilUsuario', {
-        headers: this.authHeaders(),
-      })
+      this._http.get<Usuario>(this.apiUrl + 'api/Manage/PerfilUsuario')
     );
 
   }
 
   async getComprasAsync(): Promise<Pedido[]> {
     return await firstValueFrom(
-      this._http.get<Pedido[]>(this.apiUrl + 'api/Compra/ComprasUsuario', {
-        headers: this.authHeaders(),
-      })
+      this._http.get<Pedido[]>(this.apiUrl + 'api/Compra/ComprasUsuario')
     );
   }
 
   async insertarPerdidoAsync(idCubo: number): Promise<void>{
     await firstValueFrom(
-      this._http.post(this.apiUrl + 'api/Compra/InsertarPedido/' + idCubo, '',  {
-        headers: this.authHeaders(),
-        responseType: 'text' ,
+      this._http.post(this.apiUrl + 'api/Compra/InsertarPedido/' + idCubo, '', {
+        responseType: 'text',
       })
     );
   }
 
-
+  async registrarAsync(nombre: string, email:string, pass:string): Promise<void>{
+    await firstValueFrom(
+      this._http.post(this.apiUrl + 'api/Manage/RegistroUsuario', {nombre, email, pass}, {
+        responseType: 'text',
+      })
+    );
   }
 
+  
+
+
+  }
